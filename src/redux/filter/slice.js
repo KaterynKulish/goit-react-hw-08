@@ -4,8 +4,6 @@ const initialState = {
   filter: '',
 };
 
-export const selectNameFilter = state => state.filter.filter;
-
 const slice = createSlice({
   name: 'filter',
   initialState,

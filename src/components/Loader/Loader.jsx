@@ -1,6 +1,6 @@
 import { Blocks } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
-import { selectLoading } from '../../redux/contactsSlice';
+import { selectLoading } from '../../redux/contacts/selectors';
 
 const Loader = () => {
   const loader = useSelector(selectLoading);

@@ -1,16 +1,15 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './contactsOps';
-import { selectNameFilter } from './filtersSlice';
+
+import { addContact, deleteContact, fetchContacts } from './operations';
+import { logoutUserThunk } from '../auth/operations';
+import { selectContacts } from './selectors';
+import { selectNameFilter } from '../filter/selectors';
 
 const initialState = {
   items: [],
   loading: false,
   error: null,
 };
-
-export const selectContacts = state => state.contacts.items;
-export const selectLoading = state => state.contacts.loading;
-export const selectError = state => state.contacts.error;
 
 export const selectFilteredContactsMemo = createSelector(
   [selectContacts, selectNameFilter],
@@ -59,6 +58,11 @@ const slice = createSlice({
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logoutUserThunk.fulfilled, (state, action) => {
+        state.items = [];
+        state.loading = false;
+        state.error = null;
       });
   },
 });
