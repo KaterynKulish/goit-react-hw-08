@@ -11,7 +11,7 @@ import Layout from './components/Layout';
 import { selectError } from './redux/contacts/selectors';
 import { refreshUserThunk } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import PrivatRoute from './components/PrivatRoute';
+import PrivateRoute from './components/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -56,9 +56,9 @@ const App = () => {
           <Route
             path="/contacts"
             element={
-              // <PrivatRoute>
-              <ContactsPage />
-              // </PrivatRoute>
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
             }
           />
           <Route
